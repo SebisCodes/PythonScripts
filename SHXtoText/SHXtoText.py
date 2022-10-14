@@ -94,20 +94,20 @@ def convert_annot(pdf_name):
     except:
         root = tkinter.Tk()
         root.withdraw()
-        messagebox.showinfo("Error beim Speichern des PDF's!", "Error: Speichern gescheitert!")
+        messagebox.showinfo("Error!", "Error: Saving failed!")
     
     try:
         os.remove(pdf_name)
     except:
         root = tkinter.Tk()
         root.withdraw()
-        messagebox.showinfo("Error beim Speichern des PDF's!", "Error: Löschen gescheitert, PDF bereits geöffnet!")
+        messagebox.showinfo("Error!", "Error: Delete failed, file is open!")
     try:
         os.rename(new_pdf_file_name, pdf_name)
     except:
         root = tkinter.Tk()
         root.withdraw()
-        messagebox.showinfo("Error beim Speichern des PDF's!", "Error: Umbenennen gescheitert, PDF bereits geöffnet!")
+        messagebox.showinfo("Error!", "Error: Renaming failed, file is open!")
 
 if __name__ == '__main__':
     if len(sys.argv) > 0:
