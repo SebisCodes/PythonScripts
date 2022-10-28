@@ -76,6 +76,7 @@ def convert_annot(pdf_name):
         new_pdf_file_name=None
 
         page = pdf.getPage(page_num)
+        page.compress_content_streams(packet)
         #Put old PDF over new transparent text
         new_pdf.getPage(0).mergePage(page)
 
