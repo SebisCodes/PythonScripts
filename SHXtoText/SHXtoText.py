@@ -75,19 +75,18 @@ def convert_annot(pdf_name):
         page=None
         new_pdf_file_name=None
 
-        page = pdf.getPage(page_num)
+        page = new_pdf.getPage(0)
         page.compress_content_streams(packet)
         #Put old PDF over new transparent text
-        new_pdf.getPage(0).mergePage(page)
-
+        pdf.getPage(page_num).mergePage(page)
+        pdf.getPage(page_num).compress_content_streams(packet)
         #Add new page to output file
-        output.addPage(new_pdf.getPage(0))
+        output.addPage(pdf.getPage(page_num))
     output.removeLinks()
 
     # Finally output new pdf
     try:
         new_pdf_file_name=os.path.splitext(pdf_name)[0]+".annot.pdf"
-        #new_pdf_file_name=pdf_name
         outputStream = open(new_pdf_file_name, "wb")
         output.write(outputStream)
         outputStream.close()
