@@ -56,14 +56,14 @@ def convert_annot(pdf_name):
                 x1=int(urx)
                 y1=int(ury-(ury-lly)/2)
                 if ury-lly > 1.5*(llx-urx):
-                    c.setFont('Helvetica',(llx-urx)/2)
+                    c.setFont('Calibri',(llx-urx)/2)
                     c.saveState()
                     c.translate(x1,y1)
                     c.rotate(90)
                     c.drawString(-(ury-lly)/2,-(llx-urx)/2,text)
                     c.restoreState()
                 else:
-                    c.setFont('Helvetica',(ury-lly)/2)
+                    c.setFont('Calibri',(ury-lly)/2)
                     c.drawString(x1,y1,text)
                     c.saveState()
         c.save()
