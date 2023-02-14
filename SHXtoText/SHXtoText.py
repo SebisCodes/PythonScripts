@@ -76,10 +76,16 @@ def convert_annot(pdf_name):
         new_pdf_file_name=None
 
         page = new_pdf.getPage(0)
-        page.compress_content_streams(packet)
+        page.compressContentStreams()
         #Put old PDF over new transparent text
-        pdf.getPage(page_num).mergePage(page)
-        pdf.getPage(page_num).compress_content_streams(packet)
+        #pdf.getPage(page_num).mergePage(page)
+        #pdf.getPage(page_num).compressContentStreams()
+        page.mergePage(pdf.getPage(page_num))
+        page.compressContentStreams()
+        page.cropBox.setLowerLeft((0, 0))
+        page.cropBox.setLowerRight((round(page.width), 0))
+        page.cropBox.setUpperLeft(0, (round(page.height)))
+        page.cropBox.setUpperRight((round(page.width), round(page.height)))
         #Add new page to output file
         output.addPage(pdf.getPage(page_num))
     output.removeLinks()
