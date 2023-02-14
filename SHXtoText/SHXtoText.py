@@ -82,10 +82,6 @@ def convert_annot(pdf_name):
         #pdf.getPage(page_num).compressContentStreams()
         page.mergePage(pdf.getPage(page_num))
         page.compressContentStreams()
-        page.cropBox.setLowerLeft((0, 0))
-        page.cropBox.setLowerRight((round(page.width), 0))
-        page.cropBox.setUpperLeft(0, (round(page.height)))
-        page.cropBox.setUpperRight((round(page.width), round(page.height)))
         #Add new page to output file
         output.addPage(pdf.getPage(page_num))
     output.removeLinks()
